@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<title>Banka</title>
+<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
+
+<link rel="stylesheet"
+	href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css">
+<link href="css/sweetalert.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/ng-notify.css" rel="stylesheet" type="text/css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+
+
+
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/sweetalert.min.js"></script>
+<script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/angular-route.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script type="text/javascript" src="js/ng-notify.js"></script>
+<script type="text/javascript" src="js/indexController.js"></script>
+<script type="text/javascript" src="js/service.js"></script>
+
+
+</head>
+<body ng-app="bezbednost">
+
+	<!-- HEADER AND NAVBAR -->
+	<div ng-controller="generateController">
+		<header>
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<ul class="nav navbar-nav navbar-left" ng-show="korisnik">
+						<li><a href="#!/generate"><i class="fa fa-home"></i>Generate
+								Certificates</a></li>
+						<li><a href="#!/generateCSR"><i class="fa fa-home"></i>Generate
+								Certificates with CSR</a></li>
+						<li><a href="#!/search"><i class="fa fa-home"></i>Search</a></li>
+						<li><a ng-show="korisnik.uloga == 'Zaposleni'"
+							href="#!/withdraw"><i class="fa fa-home"></i>Withdraw</a></li>
+						<li><a href="#!/status"><i class="fa fa-home"></i>Check
+								status</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right" ng-show="!korisnik">
+						<form id="signin" class="navbar-form navbar-right" role="form">
+							<div class="input-group">
+								<span class="input-group-addon"></span> <input id="username"
+									type="text" class="form-control" name="username" value=""
+									ng-Model="logovanje.korisnickoIme" placeholder="Username">
+							</div>
+
+							<div class="input-group">
+								<span class="input-group-addon"></span> <input id="password"
+									type="password" class="form-control" name="password" value=""
+									ng-Model="logovanje.lozinka" placeholder="Password">
+							</div>
+
+							<button type="submit" class="btn btn-primary"
+								ng-click="submitLogin()">Login</button>
+						</form>
+					</ul>
+					<ul class="nav navbar-nav navbar-right" ng-show="korisnik">
+						<form id="signin" class="navbar-form navbar-right" role="form">
+							<a href="#!/changePassword">Settings</a>
+							<button type="submit" class="btn btn-primary" ng-click="logout()">Logout</button>
+						</form>
+					</ul>
+				</div>
+			</nav>
+		</header>
+
+		<!-- MAIN CONTENT AND INJECTED VIEWS -->
+		<div id="main">
+			<div ng-view></div>
+
+		</div>
+	</div>
+
+</body>
+</html>

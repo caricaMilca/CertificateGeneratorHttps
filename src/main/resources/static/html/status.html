@@ -1,0 +1,17 @@
+<div ng-controller="generateController">
+	<form name="myForm" novalidate>
+		<div class="form-group">
+			<div class="form-group">
+				<label>Serial number:</label> <input type="text" name="ser"
+					ng-Model="serial" style="width: 526px;" class="form-control"
+					placeholder="Serial number" />
+			</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-success"
+					ng-disabled="myForm.$invalid" ng-Click="statusCertificate(serial)">Send</button>
+			</div>
+			<div class="form-group">
+				<label>Status:</label> {{status}}
+			</div>
+	</form>
+</div>

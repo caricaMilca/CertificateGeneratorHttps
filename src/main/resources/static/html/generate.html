@@ -1,0 +1,139 @@
+<div ng-controller="generateController" ng-init="caCertificate()">
+	<form name="myForm" novalidate style="width: 500px;">
+		<div class="form-group">
+			<label>Key algorithm?</label>
+			<div class="form-group">
+				<label class="radio-inline"> <input type="radio" value="DSA"
+					ng-model="cert.keyAlgorithm" required /> DSA
+				</label> <label class="radio-inline"> <input type="radio"
+					value="RSA" ng-model="cert.keyAlgorithm" required /> RSA
+				</label>
+			</div>
+			<label>Key size?</label>
+			<div class="form-group">
+				<label class="radio-inline"> <input type="radio" value="512"
+					ng-model="cert.keySize" required /> 512
+				</label> <label class="radio-inline"> <input type="radio"
+					value="1024" ng-model="cert.keySize" required /> 1024
+				</label> <label class="radio-inline"> <input type="radio"
+					value="2048" ng-model="cert.keySize" required /> 2048
+				</label> <label class="radio-inline"> <input type="radio"
+					value="4096" ng-model="cert.keySize" required /> 4096
+				</label>
+			</div>
+			<div class="form-group">
+				<label>Common name:</label> <input type="text" name="commonName"
+					ng-Model="cert.commonName" class="form-control"
+					placeholder="Enter common name" required pattern="^[A-Z][a-z A-Z]*" />
+			</div>
+			<div role="alert" style="color: red">
+				<span class="error" ng-show="myForm.commonName.$error.pattern">
+					Example with all permited letters : "Sasa_da nekaNsda" !</span>
+			</div>
+			<div class="form-group">
+				<label>Given name:</label> <input type="text" name="givenName"
+					ng-Model="cert.givenName" class="form-control"
+					placeholder="Enter given name" required pattern="^[A-Z][a-z A-Z]*" />
+			</div>
+			<div role="alert" style="color: red">
+				<span class="error" ng-show="myForm.givenName.$error.pattern">
+					Example with all permited letters : "Sasa_da nekaNsda" !</span>
+			</div>
+			<div class="form-group">
+				<label>Surname:</label> <input type="text" name="surname"
+					ng-Model="cert.surname" class="form-control"
+					placeholder="Enter surname" required pattern="^[A-Z][a-z A-Z]*" />
+			</div>
+			<div role="alert" style="color: red">
+				<span class="error" ng-show="myForm.surname.$error.pattern">
+					Example with all permited letters : "Sasa_da nekaNsda" !</span>
+			</div>
+			<div class="form-group">
+				<label>Organization:</label> <input type="text" name="organization"
+					ng-Model="cert.organization" class="form-control"
+					placeholder="Enter organization" required
+					pattern="^[A-Z][a-z A-Z]*" />
+			</div>
+			<div role="alert" style="color: red">
+				<span class="error" ng-show="myForm.organization.$error.pattern">
+					Example with all permited letters : "Sasa_da nekaNsda" !</span>
+			</div>
+			<div class="form-group">
+				<label>Organization unit:</label> <input type="text"
+					name="organizationUnit" ng-Model="cert.organizationUnit"
+					class="form-control" placeholder="Enter organization unit" required
+					pattern="^[A-Z][a-z A-Z]*" />
+			</div>
+			<div role="alert" style="color: red">
+				<span class="error" ng-show="myForm.organizationUnit.$error.pattern">
+					Example with all permited letters : "Sasa_da nekaNsda" !</span>
+			</div>
+
+			<div class="form-group">
+				<label>Country:</label> <input type="text" name="country"
+					ng-Model="cert.country" class="form-control"
+					placeholder="Enter country" required pattern="^[A-Z][a-z A-Z]*" />
+			</div>
+			<div role="alert" style="color: red">
+				<span class="error" ng-show="myForm.country.$error.pattern">
+					Example with all permited letters : "Sasa_da nekaNsda" !</span>
+			</div>
+
+
+			<div class="form-group">
+				<label>Email:</label> <input type="text" name="email"
+					ng-Model="cert.email" class="form-control"
+					placeholder="Enter email" required />
+			</div>
+			<div role="alert" style="color: red">
+				<span class="error"
+					ng-show="myForm.email.$invalid &&  myForm.email.$dirty">
+					Example : "username.surname@gmail.com" !</span>
+			</div>
+
+			<div class="form-group">
+				<label>Valid from:</label> <input type="date" name="date"
+					ng-Model="cert.validFrom" class="form-control"
+					placeholder="Valid from" />
+			</div>
+			<div class="form-group">
+				<label>Valid to:</label> <input type="date" ng-Model="cert.validTo"
+					class="form-control" placeholder="Valid to" />
+			</div>
+
+			<label>Self assigned?</label>
+			<div class="form-group">
+				<label class="radio-inline"> <input type="radio" value=true
+					ng-model="cert.root" required ng-click="loadIssuers()" /> Yes
+				</label> <label class="radio-inline"> <input type="radio"
+					value=false ng-model="cert.root" required /> No
+				</label>
+			</div>
+
+			<label>Certificate issuer :</label>
+			<div>
+				<select ng-model="cert.issuerName"
+					ng-options="x for x in caCertificate">
+				</select>
+			</div>
+
+			<label ng-show="!uloga">Certification Authority?</label>
+			<div class="form-group" ng-show="!uloga">
+				<label class="radio-inline"> <input type="radio" value=true
+					ng-model="cert.certificationAuthority" required /> Yes
+				</label> <label class="radio-inline"> <input type="radio"
+					value=false ng-model="cert.certificationAuthority" required /> No
+				</label>
+			</div>
+			<div class="form-group">
+				<label>Key alias:</label> <input type="text" name="alias"
+					ng-Model="cert.keyAlias" class="form-control"
+					placeholder="Enter alias" required />
+			</div>
+
+			<div class="form-group">
+				<button type="submit" class="btn btn-success"
+					ng-Click="generateCertificate(cert)">Submit</button>
+			</div>
+	</form>
+</div>

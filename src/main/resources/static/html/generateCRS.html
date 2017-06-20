@@ -1,0 +1,44 @@
+<div ng-controller="generateController" ng-init="caCertificate()">
+	<form name="myForm" novalidate style="width: 500px;">
+		<div class="form-group">
+			<div class="form-group">
+				<label>CRS:</label>
+				<textarea rows="15" cols="30" type="text" name="commonName"
+					ng-Model="ccrs.csr" class="form-control" placeholder="Enter crs"
+					required></textarea>
+			</div>
+			<div class="form-group">
+				<label>Email:</label> <input type="text" name="email"
+					ng-Model="ccrs.email" class="form-control"
+					placeholder="Enter email" required />
+			</div>
+			<div role="alert" style="color: red">
+				<span class="error"
+					ng-show="myForm.email.$invalid &&  myForm.email.$dirty">
+					Example : "username.surname@gmail.com" !</span>
+			</div>
+			<div class="form-group">
+				<label>Valid from:</label> <input type="date" name="date"
+					ng-Model="ccrs.validFrom" class="form-control"
+					placeholder="Valid from" />
+			</div>
+			<div class="form-group">
+				<label>Valid to:</label> <input type="date" ng-Model="ccrs.validTo"
+					class="form-control" placeholder="Valid to" />
+			</div>
+			<label>Certificate issuer :</label>
+			<div>
+				<select ng-model="ccrs.issuerName"
+					ng-options="x for x in caCertificate"></select>
+			</div>
+			<div class="form-group">
+				<label>Key alias:</label> <input type="text" name="alias"
+					ng-Model="ccrs.keyAlias" class="form-control"
+					placeholder="Enter alias" required />
+			</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-success"
+					ng-Click="generateCRSCertificate(ccrs)">Submit</button>
+			</div>
+	</form>
+</div>
